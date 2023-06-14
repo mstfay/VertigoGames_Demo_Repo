@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bdee88b2b69c440937e1b95913a326, type: 3}
+  m_Name: Silver_Spin
+  m_EditorClassIdentifier: 
+  rewardItem:
+  - rewardSprite: {fileID: 21300000, guid: 72276ed3f3e743647b88d8e5ce2b8423, type: 3}
+    rewardCount: 5
+  - rewardSprite: {fileID: 21300000, guid: 4dcec089767a03a4e8e44d8990262d8e, type: 3}
+    rewardCount: 4
+  - rewardSprite: {fileID: 21300000, guid: 461edbd892c25a14a822fbbbfae1d9f3, type: 3}
+    rewardCount: 5
+  - rewardSprite: {fileID: 21300000, guid: 73ad65fd926f7a24c8e71c30f3461429, type: 3}
+    rewardCount: 500
+  - rewardSprite: {fileID: 21300000, guid: 505c667b7061e0248a3d8cd59369dc33, type: 3}
+    rewardCount: 4
+  - rewardSprite: {fileID: 21300000, guid: 1772e6cf98818614fb5f6504106e23c9, type: 3}
+    rewardCount: 10
+  - rewardSprite: {fileID: 21300000, guid: 6f1e524fd6465cb47a68414991cb2b7d, type: 3}
+    rewardCount: 5
+  - rewardSprite: {fileID: 21300000, guid: 73ad65fd926f7a24c8e71c30f3461429, type: 3}
+    rewardCount: 800
