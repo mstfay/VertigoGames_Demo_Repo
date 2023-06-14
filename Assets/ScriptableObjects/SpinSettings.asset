@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kinOfSpin:
   - spinType: 0
-    spinRewards: {fileID: 11400000, guid: a0c99457de9302f4cad87ac6424c89c8, type: 2}
+    spinRewards: {fileID: 11400000, guid: 71ed4f5cc5ec2394ebf76498c267ce13, type: 2}
     propertiesOfSpin:
       id: 0
       spinRouletteSprite: {fileID: 21300000, guid: 4c1454f82191c9a449cac999513b9e34, type: 3}
