@@ -11,6 +11,6 @@ public class RewardItem : MonoBehaviour
     public void Initialize(RewardItemProperties rewardItem)
     {
         rewardIcon.sprite = rewardItem.RewardSprite;
-        rewardCount.text = rewardItem.RewardCount.ToString();
+        rewardCount.text = "x" + rewardItem.RewardCount;
     }
 }
