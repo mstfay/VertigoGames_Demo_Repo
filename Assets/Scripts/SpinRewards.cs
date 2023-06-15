@@ -7,9 +7,11 @@ namespace Spins
     [Serializable]
     public struct RewardItemProperties
     {
+        [SerializeField] private RewardType rewardType;
         [SerializeField] private Sprite rewardSprite;
         [SerializeField] private int rewardCount;
-
+        
+        public RewardType RewardType => rewardType;
         public Sprite RewardSprite => rewardSprite;
         public int RewardCount => rewardCount;
     }

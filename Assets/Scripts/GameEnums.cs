@@ -4,3 +4,33 @@ public enum SpinType
     SilverSpin,
     GoldSpin
 }
+
+public enum RewardType
+{
+    Death,  
+    BayonetEasterTime,
+    BayonetSummerVice,
+    CapEaster,
+    Cash,
+    ChestSmall,
+    ChestStandard,
+    ChestSuper,
+    ChestBig,
+    ChestBronze,
+    ChestSilver,
+    ChestGold,
+    GlassesEaster,
+    Gold,
+    GrenadeM26,
+    GrenadeM67,
+    HealthShotNeurostim,
+    HealthShotRegenerator,
+    HelmetPumpkin,
+    Molotov,
+    Tier1Shotgun,
+    Tier2Mle,
+    Tier2Rifle,
+    Tier3Shotgun,
+    Tier3Smg,
+    Tier3Sniper
+}
