@@ -14,6 +14,8 @@ namespace Spin
         [SerializeField] private List<Transform> spinRewardPoints;
         [SerializeField] private int silverZone = 5, goldZone = 30, currentZone = 1;
 
+        public List<RewardItemProperties> rewardItems;
+
         private KindOfSpin _kindOfSpin;
 
         private void OnValidate()
@@ -65,10 +67,17 @@ namespace Spin
         /// </summary>
         private void InitializeSpinnerItems()
         {
+            // Random order
+            if (spinSettings.isRandomOrderActive)
+            {
+                var rnd = new System.Random();
+                rewardItems = _kindOfSpin.SpinRewards.rewardItem.OrderBy(x => rnd.Next()).ToList();
+            }
+            
             for (var i = 0; i < spinRewardPoints.Count; i++)
             {
                 var rewardItem = spinRewardPoints[i].GetComponentInChildren<RewardItem>();
-                rewardItem.Initialize(_kindOfSpin.SpinRewards.rewardItem[i]);
+                rewardItem.Initialize(rewardItems[i]);
             }
         }
     }

@@ -31,6 +31,7 @@ namespace Spins
     [CreateAssetMenu(menuName = "SpinSystem/SpinSystem/SpinSettings", fileName= "SpinSettings", order = 0)]
     public class SpinSettings : ScriptableObject
     {
+        public bool isRandomOrderActive;
         public List<KindOfSpin> kinOfSpin;
 
     }
