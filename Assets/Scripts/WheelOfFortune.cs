@@ -19,7 +19,7 @@ public class WheelOfFortune : MonoBehaviour
 
     public float minInitialSpeed = 300f;
     public float maxInitialSpeed = 500f;
-    
+
     public void Spin()
     {
         spinning = true;
@@ -47,26 +47,24 @@ public class WheelOfFortune : MonoBehaviour
             {
                 spinning = false;
                 spinSpeed = 0;
-                slowDownRate = 0.2f; 
+                slowDownRate = 0.2f;
                 spinButton.interactable = true;
 
                 float zRotation = spinner.eulerAngles.z;
 
-                
-                if (zRotation < 0) {
+                if (zRotation < 0)
+                {
                     zRotation += 360;
                 }
 
-                
                 zRotation += 22.5f;
-                if (zRotation >= 360) {
+                if (zRotation >= 360)
+                {
                     zRotation -= 360;
                 }
 
-                
-                int rewardAngle = Mathf.RoundToInt(zRotation / 45) * 45; 
+                int rewardAngle = Mathf.RoundToInt(zRotation / 45) * 45;
 
-                
                 float rotationTime = 0.5f;
                 spinner.DORotate(new Vector3(spinner.eulerAngles.x, spinner.eulerAngles.y, rewardAngle), rotationTime)
                     .OnComplete(() =>
@@ -75,18 +73,12 @@ public class WheelOfFortune : MonoBehaviour
 
                         int reward = Mathf.FloorToInt(rewardAngle / 45);
                         Debug.Log("reward: " + reward);
-                        GiveReward(reward);
+                        CollectedItemsPanelsManager.Instance.CreateCollectedItemPrefab(reward);
                     });
             }
         }
     }
 
 
-    void GiveReward(int reward)
-    {
-        SpinManager spinManager = FindObjectOfType<SpinManager>();
-
-        Debug.Log(spinManager.rewardItems[reward].RewardSprite.name);
-        Debug.Log(spinManager.rewardItems[reward].RewardCount);
-    }
+    
 }
