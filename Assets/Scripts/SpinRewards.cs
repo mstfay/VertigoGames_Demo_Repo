@@ -13,7 +13,12 @@ namespace Spins
         
         public RewardType RewardType => rewardType;
         public Sprite RewardSprite => rewardSprite;
-        public int RewardCount => rewardCount;
+        public int RewardCount
+        {
+            get => rewardCount;
+
+            set => rewardCount = value;
+        }
     }
 
     [CreateAssetMenu(menuName = "SpinSystem/RewardSystem/SpinRewards", fileName= "SpinRewards")]

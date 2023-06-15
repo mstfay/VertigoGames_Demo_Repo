@@ -69,11 +69,8 @@ public class WheelOfFortune : MonoBehaviour
                 spinner.DORotate(new Vector3(spinner.eulerAngles.x, spinner.eulerAngles.y, rewardAngle), rotationTime)
                     .OnComplete(() =>
                     {
-                        Debug.Log("spinner angle: " + spinner.eulerAngles);
-
                         int reward = Mathf.FloorToInt(rewardAngle / 45);
-                        Debug.Log("reward: " + reward);
-                        CollectedItemsPanelsManager.Instance.CreateCollectedItemPrefab(reward);
+                        CollectedItemsPanelsManager.Instance.CheckCollectedItemPrefab(reward);
                     });
             }
         }

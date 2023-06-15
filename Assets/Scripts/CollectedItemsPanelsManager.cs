@@ -1,13 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Spin;
 using UnityEngine;
 
 public class CollectedItemsPanelsManager : MonoBehaviour
 {
-    public static CollectedItemsPanelsManager Instance { get; private set; } // Static instance
+    public static CollectedItemsPanelsManager Instance { get; private set; }
+    
+    [Header("General Script Properties")]
+    [SerializeField] private SpinManager spinManager;
     [SerializeField] private CollectedItemNumber collectedItemNumberPrefab;
     [SerializeField] private Transform collectedItemsPanelContent;
+    
+    private List<KeyValuePair<RewardType, CollectedItemNumber>> _collectedItems = new List<KeyValuePair<RewardType, CollectedItemNumber>>();
 
     private void Awake()
     {
@@ -17,18 +22,28 @@ public class CollectedItemsPanelsManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // If another instance already exists, destroy this one
+            Destroy(gameObject);
         }
     }
 
-    public void CreateCollectedItemPrefab(int reward)
+    /// <summary>
+    /// This method creates or updates a collected item based on the provided reward. 
+    /// If an item with the same RewardType already exists, it updates the count. 
+    /// Otherwise, it creates a new item and adds it to the collection.
+    /// </summary>
+    /// <param name="reward"></param>
+    public void CheckCollectedItemPrefab(int reward)
     {
-        SpinManager spinManager = FindObjectOfType<SpinManager>();
-        CollectedItemNumber createdCollectedItem = Instantiate(collectedItemNumberPrefab, collectedItemsPanelContent);
-        createdCollectedItem.Initialize(spinManager.rewardItems[reward]);
-        
-        
-        //Debug.Log(spinManager.rewardItems[reward].RewardSprite.name);
-        //Debug.Log(spinManager.rewardItems[reward].RewardCount);
+        var collectedItemProperties = spinManager.rewardItems[reward];
+
+        foreach (var item in _collectedItems.Where(item => item.Key == collectedItemProperties.RewardType))
+        {
+            item.Value.UpdateCollectedItemCount(collectedItemProperties.RewardCount);
+            return;
+        }
+
+        var createdCollectedItem = Instantiate(collectedItemNumberPrefab, collectedItemsPanelContent);
+        createdCollectedItem.Initialize(collectedItemProperties);
+        _collectedItems.Add(new KeyValuePair<RewardType, CollectedItemNumber>(collectedItemProperties.RewardType, createdCollectedItem));
     }
 }
