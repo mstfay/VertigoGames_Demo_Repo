@@ -7,18 +7,27 @@ using UnityEngine.UI;
 
 namespace Spin
 {
-    public class SpinManager : MonoBehaviour
+    public class SpinPanelManager : MonoBehaviour
     {
-        public SpinSettings spinSettings;
-        public int currentZoneIndex;
+        [SerializeField] private SpinSettings spinSettings;
         [SerializeField] private Image spinBaseImage, spinIndicatorImage;
         public List<Transform> spinRewardPoints;
 
         public List<RewardItemProperties> rewardItems;
 
         private KindOfSpin _kindOfSpin;
+        
+        private int _currentZoneIndex = 1;
+
+        public int CurrentZoneIndex
+        {
+            get => _currentZoneIndex;
+            set => _currentZoneIndex = value;
+        }
+
 
         public Action OnZonePassed;
+
 
         private void OnEnable()
         {
@@ -59,10 +68,10 @@ namespace Spin
         /// <returns></returns>
         private SpinTypes GetSpinType()
         {
-            if (currentZoneIndex % spinSettings.spinZones.GoldZone == 0)
+            if (_currentZoneIndex % spinSettings.spinZones.GoldZone == 0)
                 return SpinTypes.GoldSpin;
             
-            return currentZoneIndex % spinSettings.spinZones.SilverZone == 0 ? SpinTypes.SilverSpin : SpinTypes.BronzeSpin;
+            return _currentZoneIndex % spinSettings.spinZones.SilverZone == 0 ? SpinTypes.SilverSpin : SpinTypes.BronzeSpin;
         }
         
         /// <summary>

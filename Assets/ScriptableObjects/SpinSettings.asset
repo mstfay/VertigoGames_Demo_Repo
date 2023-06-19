@@ -18,6 +18,7 @@ MonoBehaviour:
     silverZoneColor: {r: 0.33624363, g: 0.7924528, b: 0.20558919, a: 1}
     goldZoneColor: {r: 1, g: 0.9728835, b: 0, a: 1}
   spinZones:
+    defaultStartZone: 1
     silverZone: 5
     goldZone: 30
   kinOfSpin:
