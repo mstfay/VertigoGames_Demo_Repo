@@ -18,6 +18,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     [SerializeField] private CollectedItemNumber collectedItemNumberPrefab;
     [SerializeField] private Transform collectedItemsPanelContent;
     [SerializeField] private GameObject willCreateObjectPrefab;
+    [SerializeField] private Button exitButton;
 
     [Header("Collected Item Animation Properties")]
     [SerializeField] private int numberOfRewardCopy = 5;
@@ -41,6 +42,16 @@ public class CollectedItemsPanelsManager : MonoBehaviour
 
         _collectedItems = new List<KeyValuePair<RewardTypes, CollectedItemNumber>>();
     }
+    
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (exitButton is null)
+        {
+            exitButton = GetComponentInChildren<Button>();
+        }
+    }
+#endif
 
     /// <summary>
     /// Registers the 'ClearAllCollectedRewards' method to the 'OnGameOver' event when the object becomes enabled.

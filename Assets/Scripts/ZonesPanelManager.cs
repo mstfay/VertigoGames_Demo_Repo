@@ -17,7 +17,10 @@ public class ZonesPanelManager : MonoBehaviour
     [SerializeField] private List<CardZoneNumber> cardZoneNumbers = new List<CardZoneNumber>();
     [SerializeField] private int maxZoneNumber = 60;
 
-    public CardZoneNumber previousCardZoneNumber, currentCardZoneNumber, comingCardZoneNumber;
+    [Header("CardZone State Management")] 
+    public CardZoneNumber previousCardZoneNumber;
+    public CardZoneNumber currentCardZoneNumber;
+    public CardZoneNumber comingCardZoneNumber;
     
     private Vector3 _initialContentPosition;
     

@@ -1,3 +1,9 @@
+public enum ButtonTypes
+{
+    Collect,
+    Back
+}
+
 public enum SpinTypes
 {
     BronzeSpin,
