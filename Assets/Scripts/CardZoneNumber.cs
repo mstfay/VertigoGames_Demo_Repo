@@ -35,8 +35,7 @@ public class CardZoneNumber : MonoBehaviour
 
     private void SetZoneNumberText()
     {
-        if (_zoneNumberText == null)
-            _zoneNumberText = GetComponentInChildren<TextMeshProUGUI>();
+        _zoneNumberText ??= GetComponentInChildren<TextMeshProUGUI>();
         
         _zoneNumberText.SetText(_zoneNumber.ToString());
 
@@ -45,8 +44,7 @@ public class CardZoneNumber : MonoBehaviour
 
     private void SetZoneNumberItemBackGround()
     {
-        if (_zoneNumberItemBackGround == null)
-            _zoneNumberItemBackGround = GetComponent<Image>();
+        _zoneNumberItemBackGround ??= GetComponent<Image>();
 
         _zoneNumberItemBackGround.sprite = GetCardZoneBackGroundImage();
 
