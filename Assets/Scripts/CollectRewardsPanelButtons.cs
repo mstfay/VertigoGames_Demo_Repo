@@ -32,6 +32,15 @@ public class CollectRewardsPanelButtons : MonoBehaviour
     /// Returns the type of button based on its sibling index.
     /// </summary>
     /// <returns></returns>
+    public Button GetButton()
+    {
+        return GetComponent<Button>();
+    }
+    
+    /// <summary>
+    /// Returns the type of button based on its sibling index.
+    /// </summary>
+    /// <returns></returns>
     private ButtonTypes GetButtonType()
     {
         return (ButtonTypes) GetSiblingIndex();

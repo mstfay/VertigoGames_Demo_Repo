@@ -14,7 +14,8 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     public static CollectedItemsPanelsManager Instance { get; private set; }
 
     [Header("General Script Properties")] 
-    [SerializeField] private SpinManager spinManager;
+    //[SerializeField] private SpinPanelManager spinManager;
+    [SerializeField] private GameObject collectRewardsPanelManager;
     [SerializeField] private CollectedItemNumber collectedItemNumberPrefab;
     [SerializeField] private Transform collectedItemsPanelContent;
     [SerializeField] private GameObject willCreateObjectPrefab;
@@ -28,6 +29,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     private List<KeyValuePair<RewardTypes, CollectedItemNumber>> _collectedItems;
 
     public Action OnGameOver;
+    private SpinPanelManager _spinManager;
 
     private void Awake()
     {
@@ -40,16 +42,19 @@ public class CollectedItemsPanelsManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _collectedItems = new List<KeyValuePair<RewardTypes, CollectedItemNumber>>();
     }
-    
+
+    private void Start()
+    {
+        _spinManager = GameManager.Instance.spinPanelManager;
+        _collectedItems = new List<KeyValuePair<RewardTypes, CollectedItemNumber>>();
+        exitButton.onClick.AddListener(ExitGameAndCollectRewards);
+    }
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (exitButton is null)
-        {
-            exitButton = GetComponentInChildren<Button>();
-        }
+        exitButton ??= GetComponentInChildren<Button>();
     }
 #endif
 
@@ -76,7 +81,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     public void CheckCollectedItemPrefab(int reward)
     {
         // This function starts by getting the properties of the reward item. 
-        var collectedItemProperties = spinManager.rewardItems[reward];
+        var collectedItemProperties = _spinManager.rewardItems[reward];
 
         // If the reward is of "Death" type, the game ends.
         if (collectedItemProperties.RewardType == RewardTypes.Death)
@@ -131,7 +136,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     /// <param name="reward"></param>
     private void AnimateItem(CollectedItemNumber item, int reward)
     {
-        CreateAndMoveSprites(item.GetSprite(), spinManager.spinRewardPoints[reward],
+        CreateAndMoveSprites(item.GetSprite(), _spinManager.spinRewardPoints[reward],
             item.GetPosition(), numberOfRewardCopy, circleRadiusForCollectedItem, collectedItemAnimationDuration);
     }
 
@@ -181,5 +186,10 @@ public class CollectedItemsPanelsManager : MonoBehaviour
         }
 
         _collectedItems.Clear();
+    }
+
+    private void ExitGameAndCollectRewards()
+    {
+        collectRewardsPanelManager.SetActive(true);
     }
 }

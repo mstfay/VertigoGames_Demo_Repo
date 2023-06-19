@@ -43,13 +43,16 @@ namespace Spins
     [Serializable]
     public struct SpinZones
     {
-
+        [SerializeField] private int defaultStartZone;
         [SerializeField] private int silverZone;
         [SerializeField] private int goldZone;
         
+        public int DefaultStartZone => defaultStartZone;
         public int SilverZone => silverZone;
         public int GoldZone => goldZone;
     }
+    
+    
     
     [CreateAssetMenu(menuName = "SpinSystem/SpinSystem/SpinSettings", fileName= "SpinSettings", order = 0)]
     public class SpinSettings : ScriptableObject

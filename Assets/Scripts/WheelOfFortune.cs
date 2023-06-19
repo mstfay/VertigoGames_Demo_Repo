@@ -1,12 +1,13 @@
+using System;
 using DG.Tweening;
 using Spin;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class WheelOfFortune : MonoBehaviour
 {
     [Header("Script References")]
-    [SerializeField] private SpinManager spinManager;
     [SerializeField] private Transform spinner;
     [SerializeField] private Button spinButton;
     
@@ -22,15 +23,10 @@ public class WheelOfFortune : MonoBehaviour
     private bool _spinning = false;
     private float _angleForEachReward;
     
-    
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (spinButton == null)
-        {
-            // İlgili Button referansını otomatik olarak ata
-            spinButton = GetComponentInChildren<Button>();
-        }
+        spinButton ??= GetComponentInChildren<Button>();
     }
 #endif
     
@@ -93,7 +89,7 @@ public class WheelOfFortune : MonoBehaviour
                     {
                         int reward = Mathf.FloorToInt(rewardAngle / 45);
                         CollectedItemsPanelsManager.Instance.CheckCollectedItemPrefab(reward);
-                        spinManager.currentZoneIndex++;
+                        GameManager.Instance.spinPanelManager.CurrentZoneIndex++;
                         ZonesPanelManager.Instance.ScrollContentByZone();
                     });
             }

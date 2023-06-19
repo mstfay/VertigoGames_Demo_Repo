@@ -11,7 +11,6 @@ public class ZonesPanelManager : MonoBehaviour
     public static ZonesPanelManager Instance { get; private set; }
 
     [Header("General Script References")]
-    [SerializeField] private SpinManager spinManager;
     [SerializeField] private CardZoneNumber cardZoneNumberPrefab;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private List<CardZoneNumber> cardZoneNumbers = new List<CardZoneNumber>();
@@ -22,9 +21,9 @@ public class ZonesPanelManager : MonoBehaviour
     public CardZoneNumber currentCardZoneNumber;
     public CardZoneNumber comingCardZoneNumber;
     
-    private Vector3 _initialContentPosition;
-    
     [HideInInspector] public bool gameOver;
+    private Vector3 _initialContentPosition;
+    private SpinPanelManager _spinPanelManager;
 
     private void OnValidate()
     {
@@ -42,11 +41,16 @@ public class ZonesPanelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    private void Start()
+    {
+        _spinPanelManager = GameManager.Instance.spinPanelManager;
         scrollRect.enabled = false;
         _initialContentPosition = scrollRect.content.localPosition;
         DetectCardZoneNumberStates();
     }
+
 
     /// <summary>
     /// The 'ScrollContentByZone' method scrolls the content of the 'scrollRect' by one 'zone'.
@@ -73,10 +77,11 @@ public class ZonesPanelManager : MonoBehaviour
     private void GameOverHandler()
     {
         previousCardZoneNumber = null;
-        spinManager.currentZoneIndex = 1;
+        var defaultZoneIndex = GameManager.Instance.spinSettings.spinZones.DefaultStartZone;
+        _spinPanelManager.CurrentZoneIndex = defaultZoneIndex;
         ChangeCurrentCardZoneNumberVisual(false);
-        currentCardZoneNumber = cardZoneNumbers[spinManager.currentZoneIndex - 1];
-        comingCardZoneNumber = cardZoneNumbers[spinManager.currentZoneIndex];
+        currentCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex - 1];
+        comingCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex];
         CollectedItemsPanelsManager.Instance.OnGameOver.Invoke();
     }
 
@@ -103,7 +108,7 @@ public class ZonesPanelManager : MonoBehaviour
     {
         scrollRect.content.DOLocalMove(targetPosition, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() =>
         {
-            spinManager.OnZonePassed.Invoke();
+            _spinPanelManager.OnZonePassed.Invoke();
             ChangeCurrentCardZoneNumberVisual(true);
             gameOver = false;
             CreateNewCardZoneNumber();
@@ -115,9 +120,9 @@ public class ZonesPanelManager : MonoBehaviour
     /// </summary>
     private void CreateNewCardZoneNumber()
     {
-        if (spinManager.currentZoneIndex % spinManager.spinSettings.spinZones.SilverZone == 0 && scrollRect.content.transform.childCount < maxZoneNumber)
+        if (_spinPanelManager.CurrentZoneIndex % GameManager.Instance.spinSettings.spinZones.SilverZone == 0 && scrollRect.content.transform.childCount < maxZoneNumber)
         {
-            for (int i = 0; i < spinManager.spinSettings.spinZones.SilverZone; i++)
+            for (int i = 0; i < GameManager.Instance.spinSettings.spinZones.SilverZone; i++)
             {
                 var createdCardZoneNumber = Instantiate(cardZoneNumberPrefab, scrollRect.content.transform);
                 cardZoneNumbers.Add(createdCardZoneNumber);
@@ -133,12 +138,12 @@ public class ZonesPanelManager : MonoBehaviour
     {
         previousCardZoneNumber = null;
 
-        if (spinManager.currentZoneIndex > 1)
-            previousCardZoneNumber = cardZoneNumbers[spinManager.currentZoneIndex - 2];
+        if (_spinPanelManager.CurrentZoneIndex > 1)
+            previousCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex - 2];
 
-        currentCardZoneNumber = cardZoneNumbers[spinManager.currentZoneIndex - 1];
+        currentCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex - 1];
 
-        comingCardZoneNumber = cardZoneNumbers[spinManager.currentZoneIndex];
+        comingCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex];
     }
 
     /// <summary>
