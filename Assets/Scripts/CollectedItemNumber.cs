@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using Spins;
 using TMPro;
 using UnityEngine;
@@ -13,11 +15,6 @@ public class CollectedItemNumber : MonoBehaviour
     private RewardItemProperties _rewardItemProperties;
     private int _siblingNumber;
 
-
-    /// <summary>
-    /// This method updates the object's name, sprite, and count value according to the properties provided by RewardItemProperties.
-    /// </summary>
-    /// <param name="itemProperties"></param>
     public void Initialize(RewardItemProperties itemProperties)
     {
         _rewardItemProperties = itemProperties;
@@ -25,7 +22,9 @@ public class CollectedItemNumber : MonoBehaviour
 
         gameObject.name = "Collected_Item_Number_" + _siblingNumber;
         collectedItemIcon.sprite = itemProperties.RewardSprite;
-        collectedItemCount.text = itemProperties.RewardCount.ToString();
+
+        // Burada text animasyonunu başlatıyoruz
+        AnimateText(itemProperties.RewardCount);
     }
 
     /// <summary>
@@ -34,14 +33,34 @@ public class CollectedItemNumber : MonoBehaviour
     /// <param name="count"></param>
     public void UpdateCollectedItemCount(int count)
     {
-        _rewardItemProperties.RewardCount += count;
-        collectedItemCount.text = _rewardItemProperties.RewardCount.ToString();
+        int newCount = _rewardItemProperties.RewardCount + count;
+        _rewardItemProperties.RewardCount = newCount;
+        AnimateText(newCount);
     }
     
+    private void AnimateText(int finalValue)
+    {
+        int initialValue = int.Parse(collectedItemCount.text);
+
+        DOTween.To(() => initialValue, x => initialValue = x, finalValue, 1f)
+            .OnUpdate(() => collectedItemCount.text = initialValue.ToString());
+    }
+
     private void OnValidate()
     {
         _siblingNumber = transform.GetSiblingIndex() + 1;
 
         gameObject.name = "Collected_Item_Number_" + _siblingNumber;
     }
+    
+    public Vector3 GetPosition()
+    {
+        return collectedItemIcon.transform.position;
+    }
+
+    public Sprite GetSprite()
+    {
+        return collectedItemIcon.sprite;
+    }
+
 }
