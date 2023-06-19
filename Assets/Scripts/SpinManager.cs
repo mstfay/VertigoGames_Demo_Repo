@@ -9,14 +9,26 @@ namespace Spin
 {
     public class SpinManager : MonoBehaviour
     {
+        public SpinSettings spinSettings;
+        public int currentZoneIndex;
         [SerializeField] private Image spinBaseImage, spinIndicatorImage;
-        [SerializeField] private SpinSettings spinSettings;
-        [SerializeField] private List<Transform> spinRewardPoints;
-        [SerializeField] private int silverZone = 5, goldZone = 30, currentZone = 1;
+        public List<Transform> spinRewardPoints;
 
         public List<RewardItemProperties> rewardItems;
 
         private KindOfSpin _kindOfSpin;
+
+        public Action OnZonePassed;
+
+        private void OnEnable()
+        {
+            OnZonePassed += SetSpinProperties;
+        }
+
+        private void OnDisable()
+        {
+            OnZonePassed -= SetSpinProperties;
+        }
 
         private void OnValidate()
         {
@@ -45,12 +57,12 @@ namespace Spin
         /// We are taking the modulus of the current zone value based on whether it's a silver zone or a gold zone and returning the SpinType value.
         /// </summary>
         /// <returns></returns>
-        private SpinType GetSpinType()
+        private SpinTypes GetSpinType()
         {
-            if (currentZone % goldZone == 0)
-                return SpinType.GoldSpin;
+            if (currentZoneIndex % spinSettings.spinZones.GoldZone == 0)
+                return SpinTypes.GoldSpin;
             
-            return currentZone % silverZone == 0 ? SpinType.SilverSpin : SpinType.BronzeSpin;
+            return currentZoneIndex % spinSettings.spinZones.SilverZone == 0 ? SpinTypes.SilverSpin : SpinTypes.BronzeSpin;
         }
         
         /// <summary>

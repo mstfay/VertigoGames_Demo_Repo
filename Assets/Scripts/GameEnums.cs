@@ -1,11 +1,18 @@
-public enum SpinType
+public enum SpinTypes
 {
     BronzeSpin,
     SilverSpin,
     GoldSpin
 }
 
-public enum RewardType
+public enum ZoneTypes
+{
+    BronzeSpin,
+    SilverSpin,
+    GoldSpin
+}
+
+public enum RewardTypes
 {
     Death,  
     BayonetEasterTime,

@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238317686378529
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +169,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -301,7 +304,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -436,7 +439,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -563,7 +566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -585,6 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238317991234398
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -783,6 +789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238318182711124
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,7 +868,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -986,7 +995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1008,6 +1017,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238318440842529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1098,6 +1110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238318443607806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1189,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 0, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1309,7 +1324,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1527,7 +1542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1549,6 +1564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238318708760049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1639,6 +1657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238318797934496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,7 +1809,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 0, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1902,7 +1923,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504238319044877216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1915,7 +1936,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1937,6 +1958,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238319170786439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2037,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2148,7 +2172,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2283,7 +2307,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287993237
-  m_fontColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2432,7 +2456,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b996b24d1037fb94fb1a67acfea5941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinManager: {fileID: 0}
+  cardZoneNumberPrefab: {fileID: 0}
   scrollRect: {fileID: 504238317991234396}
+  cardZoneNumbers:
+  - {fileID: 504238319044877220}
+  - {fileID: 504238317931809368}
+  - {fileID: 504238318355491159}
+  - {fileID: 504238318440842535}
+  - {fileID: 504238319381298786}
+  - {fileID: 504238317575221183}
+  - {fileID: 504238318127900831}
+  - {fileID: 504238319304824067}
+  - {fileID: 504238318708760055}
+  - {fileID: 504238318589843717}
+  previousCardZoneNumber: {fileID: 0}
+  currentCardZoneNumber: {fileID: 0}
+  comingCardZoneNumber: {fileID: 0}
+  gameOver: 0
 --- !u!1 &504238319304824077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2523,6 +2564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
 --- !u!1 &504238319381298796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,7 +2635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d6fc5bfb3d2ea24d8e63627c89ba103, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2613,3 +2657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d5de957c2764c4a947d499f7649b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bronzeZone: {fileID: 0}
+  silverZone: {fileID: 0}
+  goldZone: {fileID: 0}
