@@ -1,53 +1,70 @@
-using System;
 using DG.Tweening;
 using Spin;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
 
 public class WheelOfFortune : MonoBehaviour
 {
-    public float spinSpeed = 0f;
-    public float elapsedTime;
-    public bool spinning = false;
-    public AnimationCurve spinCurve;
+    [Header("Script References")]
     [SerializeField] private SpinManager spinManager;
-    [SerializeField] private Button spinButton;
     [SerializeField] private Transform spinner;
-    public float slowDownRate = 1f;
+    [SerializeField] private Button spinButton;
+    
+    [Header("Spinner Animation Properties")]
+    [SerializeField] private float slowDownRate = 1f;
+    [SerializeField] private float minInitialSpeed = 300f;
+    [SerializeField] private float maxInitialSpeed = 500f;
+    [SerializeField] private AnimationCurve spinCurve;
 
-    private const int NumberOfRewards = 8;
-
-    public float minInitialSpeed = 300f;
-    public float maxInitialSpeed = 500f;
-
+    private float _slowDownRatio;
+    private float _spinSpeed = 0f;
+    private float _elapsedTime;
+    private bool _spinning = false;
+    private float _angleForEachReward;
+    
+    
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (spinButton == null)
+        {
+            // İlgili Button referansını otomatik olarak ata
+            spinButton = GetComponentInChildren<Button>();
+        }
+    }
+#endif
+    
+    private void Awake()
+    {
+        spinButton.onClick.AddListener(Spin);
+    }
 
     public void Spin()
     {
-        spinning = true;
+        _spinning = true;
         spinButton.interactable = false;
-        spinSpeed = UnityEngine.Random.Range(minInitialSpeed, maxInitialSpeed);
-        elapsedTime = 0;
+        _spinSpeed = Random.Range(minInitialSpeed, maxInitialSpeed);
+        _elapsedTime = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        if (spinning)
+        if (_spinning)
         {
-            elapsedTime += Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
             slowDownRate += Time.deltaTime * 0.2f;
 
-            float targetSpeed = spinCurve.Evaluate(elapsedTime);
-            spinSpeed = Mathf.Lerp(spinSpeed, targetSpeed, Time.deltaTime * slowDownRate);
+            float targetSpeed = spinCurve.Evaluate(_elapsedTime);
+            _spinSpeed = Mathf.Lerp(_spinSpeed, targetSpeed, Time.deltaTime * slowDownRate);
 
-            if (spinSpeed > 50)
+            if (_spinSpeed > 50)
             {
-                spinner.Rotate(0, 0, -spinSpeed * Time.deltaTime);
+                spinner.Rotate(0, 0, -_spinSpeed * Time.deltaTime);
             }
             else
             {
-                spinning = false;
-                spinSpeed = 0;
+                _spinning = false;
+                _spinSpeed = 0;
                 slowDownRate = 0.2f;
                 spinButton.interactable = true;
 
@@ -58,7 +75,7 @@ public class WheelOfFortune : MonoBehaviour
                     zRotation += 360;
                 }
 
-                zRotation += 22.5f;
+                zRotation += _angleForEachReward/2f;
                 if (zRotation >= 360)
                 {
                     zRotation -= 360;
