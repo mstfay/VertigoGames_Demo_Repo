@@ -11,6 +11,7 @@ public class WheelOfFortune : MonoBehaviour
     public float elapsedTime;
     public bool spinning = false;
     public AnimationCurve spinCurve;
+    [SerializeField] private SpinManager spinManager;
     [SerializeField] private Button spinButton;
     [SerializeField] private Transform spinner;
     public float slowDownRate = 1f;
@@ -20,12 +21,12 @@ public class WheelOfFortune : MonoBehaviour
     public float minInitialSpeed = 300f;
     public float maxInitialSpeed = 500f;
 
+
     public void Spin()
     {
         spinning = true;
         spinButton.interactable = false;
         spinSpeed = UnityEngine.Random.Range(minInitialSpeed, maxInitialSpeed);
-        Debug.Log("spinSpeed: " + spinSpeed);
         elapsedTime = 0;
     }
 
@@ -65,17 +66,20 @@ public class WheelOfFortune : MonoBehaviour
 
                 int rewardAngle = Mathf.RoundToInt(zRotation / 45) * 45;
 
+                if (rewardAngle == 360)
+                    rewardAngle -= 360;
+
                 float rotationTime = 0.5f;
-                spinner.DORotate(new Vector3(spinner.eulerAngles.x, spinner.eulerAngles.y, rewardAngle), rotationTime)
+                var eulerAngles = spinner.eulerAngles;
+                spinner.DORotate(new Vector3(eulerAngles.x, eulerAngles.y, rewardAngle), rotationTime)
                     .OnComplete(() =>
                     {
                         int reward = Mathf.FloorToInt(rewardAngle / 45);
                         CollectedItemsPanelsManager.Instance.CheckCollectedItemPrefab(reward);
+                        spinManager.currentZoneIndex++;
+                        ZonesPanelManager.Instance.ScrollContentByZone();
                     });
             }
         }
     }
-
-
-    
 }
