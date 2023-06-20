@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,11 @@ public class CardZoneNumber : MonoBehaviour
     private readonly Color _standardZoneTextColor = Color.white;
     private readonly Color _safeZoneTextColor = Color.green;
     private readonly Color _superSafeZoneTextColor = Color.yellow;
+
+    private void Start()
+    {
+        Initialize();
+    }
 
     private void OnValidate()
     {
