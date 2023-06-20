@@ -1,8 +1,9 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using GameEnums;
 
-namespace Spins
+namespace ScriptableObjectScripts
 {
     [Serializable]
     public struct PropertiesOfSpin
@@ -16,6 +17,9 @@ namespace Spins
         public Sprite SpinIndicatorSprite => spinIndicatorSprite;
     }
     
+    /// <summary>
+    /// TO DO: Color assignments within Zones_Panel will be made from here.
+    /// </summary>
     [Serializable]
     public struct ZoneColors
     {
@@ -51,13 +55,11 @@ namespace Spins
         public int SilverZoneIndex => silverZoneIndex;
         public int GoldZoneIndex => goldZoneIndex;
     }
-    
-    
-    
+
     [CreateAssetMenu(menuName = "SpinSystem/SpinSystem/SpinSettings", fileName= "SpinSettings", order = 0)]
     public class SpinSettings : ScriptableObject
     {
-        public bool isRandomOrderActive;
+        public bool isRandomOrderActive; // TO DO: This boolean will be added to fill all spinners' content either randomly or manually.
         public SpinZones spinZonesIndex;
         public List<KindOfSpin> kindOfSpin;
 

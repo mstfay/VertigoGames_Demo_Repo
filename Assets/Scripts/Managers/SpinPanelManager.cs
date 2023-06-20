@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Spins;
+using GameEnums;
+using ScriptableObjectScripts;
+using SpinnerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Spin
+namespace Managers
 {
     public class SpinPanelManager : MonoBehaviour
     {

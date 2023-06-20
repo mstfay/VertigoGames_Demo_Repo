@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using GameEnums;
 using UnityEngine;
 
-namespace Spins
+namespace ScriptableObjectScripts
 {
     [Serializable]
     public struct RewardItemProperties

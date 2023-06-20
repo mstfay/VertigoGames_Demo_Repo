@@ -1,9 +1,13 @@
+using AnimationInterfaces;
 using DG.Tweening;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class WheelOfFortune : MonoBehaviour, IAnimationState
+namespace SpinnerScripts
+{
+    public class WheelOfFortune : MonoBehaviour, IAnimationState
 {
     [Header("Script References")]
     [SerializeField] private Transform spinner;
@@ -126,4 +130,5 @@ public class WheelOfFortune : MonoBehaviour, IAnimationState
     {
         spinButton.interactable = value;
     }
+}
 }
