@@ -129,7 +129,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
         _collectedItems.Add(
             new KeyValuePair<RewardTypes, CollectedItemNumber>(collectedItemProperties.RewardType,
                 createdCollectedItem));
-        
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)collectedItemsPanelContent.transform);
         AnimateItem(createdCollectedItem, reward);
     }
     
@@ -142,7 +142,6 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     {
         CreateAndMoveSprites(item.GetSprite(), _spinManager.spinRewardPoints[reward],
             item.GetPosition(), numberOfRewardCopy, circleRadiusForCollectedItem, collectedItemAnimationDuration);
-        
     }
 
     /// <summary>
