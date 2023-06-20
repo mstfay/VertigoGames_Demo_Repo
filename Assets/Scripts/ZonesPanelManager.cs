@@ -108,6 +108,7 @@ public class ZonesPanelManager : MonoBehaviour
     {
         scrollRect.content.DOLocalMove(targetPosition, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() =>
         {
+            CollectedItemsPanelsManager.Instance.OnWheelSpinning.Invoke(GameManager.Instance.wheelOfFortune.Spinning);
             _spinPanelManager.OnZonePassed.Invoke();
             ChangeCurrentCardZoneNumberVisual(true);
             gameOver = false;

@@ -29,6 +29,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     private List<KeyValuePair<RewardTypes, CollectedItemNumber>> _collectedItems;
 
     public Action OnGameOver;
+    public Action<bool> OnWheelSpinning;
     private SpinPanelManager _spinManager;
 
     private void Awake()
@@ -64,6 +65,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     private void OnEnable()
     {
         OnGameOver += ClearAllCollectedRewards;
+        OnWheelSpinning += WheelSpinning;
     }
 
     /// <summary>
@@ -191,5 +193,11 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     private void ExitGameAndCollectRewards()
     {
         collectRewardsPanelManager.SetActive(true);
+    }
+    
+    private void WheelSpinning(bool value)
+    {
+        //var isWheelSpinning = GameManager.Instance.wheelOfFortune.Spinning;
+        exitButton.gameObject.SetActive(!value);
     }
 }

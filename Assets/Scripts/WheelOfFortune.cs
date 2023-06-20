@@ -1,6 +1,4 @@
-using System;
 using DG.Tweening;
-using Spin;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -22,6 +20,8 @@ public class WheelOfFortune : MonoBehaviour
     private float _elapsedTime;
     private bool _spinning = false;
     private float _angleForEachReward;
+
+    public bool Spinning => _spinning;
     
 #if UNITY_EDITOR
     private void OnValidate()
@@ -38,6 +38,7 @@ public class WheelOfFortune : MonoBehaviour
     public void Spin()
     {
         _spinning = true;
+        CollectedItemsPanelsManager.Instance.OnWheelSpinning(_spinning);
         spinButton.interactable = false;
         _spinSpeed = Random.Range(minInitialSpeed, maxInitialSpeed);
         _elapsedTime = 0;
@@ -60,6 +61,7 @@ public class WheelOfFortune : MonoBehaviour
             else
             {
                 _spinning = false;
+                //CollectedItemsPanelsManager.Instance.OnWheelSpinning(_spinning);
                 _spinSpeed = 0;
                 slowDownRate = 0.2f;
                 spinButton.interactable = true;

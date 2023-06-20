@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ZonesPanelManager zonesPanelManager;
     public CollectedItemsPanelsManager collectedItemsPanelsManager;
     public SpinPanelManager spinPanelManager;
+    public WheelOfFortune wheelOfFortune;
     public CollectRewardsPanelManager collectRewardsPanelManager;
     public SpinSettings spinSettings;
 
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
         collectedItemsPanelsManager ??= FindObjectOfType<CollectedItemsPanelsManager>();
 
         spinPanelManager ??= FindObjectOfType<SpinPanelManager>();
+        
+        wheelOfFortune ??= FindObjectOfType<WheelOfFortune>();
 
         collectRewardsPanelManager ??= FindObjectOfType<CollectRewardsPanelManager>();
     }
