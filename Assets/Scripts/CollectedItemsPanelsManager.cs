@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -18,6 +19,7 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     [SerializeField] private GameObject collectRewardsPanelManager;
     [SerializeField] private CollectedItemNumber collectedItemNumberPrefab;
     [SerializeField] private Transform collectedItemsPanelContent;
+    [SerializeField] private Transform rewardsParent;
     [SerializeField] private GameObject willCreateObjectPrefab;
     [SerializeField] private Button exitButton;
 
@@ -140,17 +142,20 @@ public class CollectedItemsPanelsManager : MonoBehaviour
     {
         CreateAndMoveSprites(item.GetSprite(), _spinManager.spinRewardPoints[reward],
             item.GetPosition(), numberOfRewardCopy, circleRadiusForCollectedItem, collectedItemAnimationDuration);
+        
     }
 
     /// <summary>
     /// Clears all collected rewards by destroying the game objects and then clearing the list.
+    /// Triggers the "MakeBigger" animation on the wheel of fortune.
+    /// TO DO: Object pooling for this method.
     /// </summary>
     private void CreateAndMoveSprites(Sprite sprite, Transform start, Vector3 end, int numberOfCopies, float radius, float duration)
     {
         for (int i = 0; i < numberOfCopies; i++)
         {
             // Instantiate the parent GameObject, not the Image component directly
-            GameObject obj = Instantiate(willCreateObjectPrefab, start);
+            GameObject obj = Instantiate(willCreateObjectPrefab, rewardsParent);
 
             // Then get its Image component
             Image image = obj.GetComponent<Image>();
@@ -173,7 +178,11 @@ public class CollectedItemsPanelsManager : MonoBehaviour
             mySequence.Append(obj.transform.DOMove(end, duration).SetEase(Ease.InOutQuad));
 
             // Destroy the object when the sequence is complete
-            mySequence.OnComplete(() => Destroy(obj));
+            mySequence.OnComplete(() =>
+            {
+                Destroy(obj);
+                GameManager.Instance.wheelOfFortune.TriggerAnimation("MakeBigger");
+            });
         }
     }
 
@@ -190,14 +199,20 @@ public class CollectedItemsPanelsManager : MonoBehaviour
         _collectedItems.Clear();
     }
 
+    /// <summary>
+    /// Make false the exit button state.
+    /// </summary>
     private void ExitGameAndCollectRewards()
     {
         collectRewardsPanelManager.SetActive(true);
     }
     
+    /// <summary>
+    /// The exit button interactable is enabled or disabled based on the state of the spinner.
+    /// </summary>
+    /// <param name="value"></param>
     private void WheelSpinning(bool value)
     {
-        //var isWheelSpinning = GameManager.Instance.wheelOfFortune.Spinning;
-        exitButton.gameObject.SetActive(!value);
+        exitButton.interactable = !value;
     }
 }

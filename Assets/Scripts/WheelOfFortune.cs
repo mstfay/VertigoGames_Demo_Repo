@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class WheelOfFortune : MonoBehaviour
+public class WheelOfFortune : MonoBehaviour, IAnimationState
 {
     [Header("Script References")]
     [SerializeField] private Transform spinner;
     [SerializeField] private Button spinButton;
+    [SerializeField] private Animator wheelAnimator;
     
     [Header("Spinner Animation Properties")]
     [SerializeField] private float slowDownRate = 1f;
@@ -27,6 +28,7 @@ public class WheelOfFortune : MonoBehaviour
     private void OnValidate()
     {
         spinButton ??= GetComponentInChildren<Button>();
+        wheelAnimator ??= gameObject.GetComponent<Animator>();
     }
 #endif
     
@@ -35,15 +37,23 @@ public class WheelOfFortune : MonoBehaviour
         spinButton.onClick.AddListener(Spin);
     }
 
+    /// <summary>
+    /// Initiates the spin of the wheel. Sets the spinning state to true, 
+    /// updates the OnWheelSpinning event, deactivates the spin button and sets the initial spin speed.
+    /// </summary>
     public void Spin()
     {
         _spinning = true;
         CollectedItemsPanelsManager.Instance.OnWheelSpinning(_spinning);
-        spinButton.interactable = false;
+        SetButtonInteractable(!_spinning);
         _spinSpeed = Random.Range(minInitialSpeed, maxInitialSpeed);
         _elapsedTime = 0;
     }
 
+    /// <summary>
+    /// Called every frame. Manages the spin of the wheel, 
+    /// adjusts speed and rotation, calculates rewards and initiates next zone when spin is over.
+    /// </summary>
     private void Update()
     {
         if (_spinning)
@@ -61,10 +71,8 @@ public class WheelOfFortune : MonoBehaviour
             else
             {
                 _spinning = false;
-                //CollectedItemsPanelsManager.Instance.OnWheelSpinning(_spinning);
                 _spinSpeed = 0;
                 slowDownRate = 0.2f;
-                spinButton.interactable = true;
 
                 float zRotation = spinner.eulerAngles.z;
 
@@ -92,9 +100,30 @@ public class WheelOfFortune : MonoBehaviour
                         int reward = Mathf.FloorToInt(rewardAngle / 45);
                         CollectedItemsPanelsManager.Instance.CheckCollectedItemPrefab(reward);
                         GameManager.Instance.spinPanelManager.CurrentZoneIndex++;
-                        ZonesPanelManager.Instance.ScrollContentByZone();
+                        DOVirtual.DelayedCall(1.0f, () =>
+                        {
+                            ZonesPanelManager.Instance.ScrollContentByZone();
+                        });
                     });
             }
         }
+    }
+
+    /// <summary>
+    /// Triggers the specified animation on the wheel animator.
+    /// </summary>
+    /// <param name="animationName"></param>
+    public void TriggerAnimation(string animationName)
+    {
+        wheelAnimator.SetTrigger(animationName);
+    }
+    
+    /// <summary>
+    /// Sets the interactability of the spin button.
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetButtonInteractable(bool value)
+    {
+        spinButton.interactable = value;
     }
 }

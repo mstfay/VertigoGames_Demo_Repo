@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Spin;
@@ -73,6 +74,7 @@ public class ZonesPanelManager : MonoBehaviour
 
     /// <summary>
     /// The 'GameOverHandler' method handles the game over state by resetting variables and invoking the 'OnGameOver' event.
+    /// Triggers the "MakeBigger" animation on the wheel of fortune.
     /// </summary>
     private void GameOverHandler()
     {
@@ -83,6 +85,7 @@ public class ZonesPanelManager : MonoBehaviour
         currentCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex - 1];
         comingCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex];
         CollectedItemsPanelsManager.Instance.OnGameOver.Invoke();
+        GameManager.Instance.wheelOfFortune.TriggerAnimation("MakeBigger");
     }
 
     /// <summary>
@@ -102,6 +105,7 @@ public class ZonesPanelManager : MonoBehaviour
     /// <summary>
     /// The 'AnimateContentXPosition' method animates the 'scrollRect.content' to the specified 'targetPosition'.
     /// When the animation is completed, it invokes the 'OnZonePassed' event, resets the 'gameOver' variable, and creates a new 'CardZoneNumber' object.
+    /// Triggers the "MakeBigger" animation on the wheel of fortune, and sets the interactability of the spin button depending on whether the wheel is spinning or not.
     /// </summary>
     /// <param name="targetPosition"></param>
     private void AnimateContentXPosition(Vector2 targetPosition)
@@ -113,6 +117,9 @@ public class ZonesPanelManager : MonoBehaviour
             ChangeCurrentCardZoneNumberVisual(true);
             gameOver = false;
             CreateNewCardZoneNumber();
+            
+            GameManager.Instance.wheelOfFortune.TriggerAnimation("MakeBigger");
+            GameManager.Instance.wheelOfFortune.SetButtonInteractable(!GameManager.Instance.wheelOfFortune.Spinning);
         });
     }
 
