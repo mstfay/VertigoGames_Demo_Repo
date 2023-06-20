@@ -14,8 +14,9 @@ public class ZonesPanelManager : MonoBehaviour
     [Header("General Script References")]
     [SerializeField] private CardZoneNumber cardZoneNumberPrefab;
     [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private List<CardZoneNumber> cardZoneNumbers = new List<CardZoneNumber>();
+    [SerializeField] private TextMeshProUGUI superZoneText, safeZoneText;
     [SerializeField] private int maxZoneNumber = 60;
+    [SerializeField] private List<CardZoneNumber> cardZoneNumbers = new List<CardZoneNumber>();
 
     [Header("CardZone State Management")] 
     public CardZoneNumber previousCardZoneNumber;
@@ -24,6 +25,8 @@ public class ZonesPanelManager : MonoBehaviour
     
     [HideInInspector] public bool gameOver;
     private Vector3 _initialContentPosition;
+    private int _goldZoneIndex;
+    private int _silverZoneIndex;
     private SpinPanelManager _spinPanelManager;
 
     private void OnValidate()
@@ -49,9 +52,18 @@ public class ZonesPanelManager : MonoBehaviour
         _spinPanelManager = GameManager.Instance.spinPanelManager;
         scrollRect.enabled = false;
         _initialContentPosition = scrollRect.content.localPosition;
+        Initialize();
         DetectCardZoneNumberStates();
     }
 
+    private void Initialize()
+    {
+        _goldZoneIndex = GameManager.Instance.spinSettings.spinZonesIndex.GoldZoneIndex;
+        _silverZoneIndex = GameManager.Instance.spinSettings.spinZonesIndex.SilverZoneIndex;
+
+        superZoneText.text = _goldZoneIndex.ToString();
+        safeZoneText.text = _silverZoneIndex.ToString();
+    }
 
     /// <summary>
     /// The 'ScrollContentByZone' method scrolls the content of the 'scrollRect' by one 'zone'.
@@ -67,6 +79,7 @@ public class ZonesPanelManager : MonoBehaviour
             targetPosition = DetectTargetPosition();
 
         DetectCardZoneNumberStates();
+        CheckZonesKindsPanelTexts();
         ChangePreviousCardZoneNumberVisual();
         ChangeComingCardZoneNumberVisual();
         AnimateContentXPosition(targetPosition);
@@ -79,11 +92,12 @@ public class ZonesPanelManager : MonoBehaviour
     private void GameOverHandler()
     {
         previousCardZoneNumber = null;
-        var defaultZoneIndex = GameManager.Instance.spinSettings.spinZones.DefaultStartZone;
+        var defaultZoneIndex = GameManager.Instance.spinSettings.spinZonesIndex.DefaultStartZoneIndex;
         _spinPanelManager.CurrentZoneIndex = defaultZoneIndex;
         ChangeCurrentCardZoneNumberVisual(false);
         currentCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex - 1];
         comingCardZoneNumber = cardZoneNumbers[_spinPanelManager.CurrentZoneIndex];
+        Initialize();
         CollectedItemsPanelsManager.Instance.OnGameOver.Invoke();
         GameManager.Instance.wheelOfFortune.TriggerAnimation("MakeBigger");
     }
@@ -128,9 +142,9 @@ public class ZonesPanelManager : MonoBehaviour
     /// </summary>
     private void CreateNewCardZoneNumber()
     {
-        if (_spinPanelManager.CurrentZoneIndex % GameManager.Instance.spinSettings.spinZones.SilverZone == 0 && scrollRect.content.transform.childCount < maxZoneNumber)
+        if (_spinPanelManager.CurrentZoneIndex % GameManager.Instance.spinSettings.spinZonesIndex.SilverZoneIndex == 0 && scrollRect.content.transform.childCount < maxZoneNumber)
         {
-            for (int i = 0; i < GameManager.Instance.spinSettings.spinZones.SilverZone; i++)
+            for (int i = 0; i < GameManager.Instance.spinSettings.spinZonesIndex.SilverZoneIndex; i++)
             {
                 var createdCardZoneNumber = Instantiate(cardZoneNumberPrefab, scrollRect.content.transform);
                 cardZoneNumbers.Add(createdCardZoneNumber);
@@ -182,4 +196,19 @@ public class ZonesPanelManager : MonoBehaviour
    {
        comingCardZoneNumber.ChangeCardZoneNumberVisual(false, comingCardZoneNumber.CardZoneNumberText().color);
    }
+
+    /// <summary>
+    /// Checks the kind of the current zone and updates the relevant UI text depending on whether the zone is a super or safe zone.
+    /// </summary>
+    private void CheckZonesKindsPanelTexts()
+    {
+        if (currentCardZoneNumber.ZoneNumber % _goldZoneIndex is 0)
+        {
+            superZoneText.text = (currentCardZoneNumber.ZoneNumber + _goldZoneIndex).ToString();
+            return;
+        }
+
+        if (currentCardZoneNumber.ZoneNumber % _silverZoneIndex is not 0) return;
+        safeZoneText.text = (currentCardZoneNumber.ZoneNumber + _silverZoneIndex).ToString();
+    }
 }

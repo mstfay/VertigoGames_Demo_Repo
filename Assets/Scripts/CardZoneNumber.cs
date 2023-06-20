@@ -12,6 +12,8 @@ public class CardZoneNumber : MonoBehaviour
     private Image _zoneNumberItemBackGround;
     private int _zoneNumber;
 
+    public int ZoneNumber => _zoneNumber;
+
     private readonly Color _standardZoneTextColor = Color.white;
     private readonly Color _safeZoneTextColor = Color.green;
     private readonly Color _superSafeZoneTextColor = Color.yellow;

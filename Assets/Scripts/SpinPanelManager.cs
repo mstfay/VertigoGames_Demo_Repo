@@ -56,7 +56,7 @@ namespace Spin
         /// </summary>
         private void SetKindOfSpin()
         {
-            foreach (var spinItem in spinSettings.kinOfSpin.Where(spinItem => spinItem.SpinType == GetSpinType()))
+            foreach (var spinItem in spinSettings.kindOfSpin.Where(spinItem => spinItem.SpinType == GetSpinType()))
             {
                 _kindOfSpin = spinItem;
             }
@@ -68,10 +68,10 @@ namespace Spin
         /// <returns></returns>
         private SpinTypes GetSpinType()
         {
-            if (_currentZoneIndex % spinSettings.spinZones.GoldZone == 0)
+            if (_currentZoneIndex % spinSettings.spinZonesIndex.GoldZoneIndex == 0)
                 return SpinTypes.GoldSpin;
             
-            return _currentZoneIndex % spinSettings.spinZones.SilverZone == 0 ? SpinTypes.SilverSpin : SpinTypes.BronzeSpin;
+            return _currentZoneIndex % spinSettings.spinZonesIndex.SilverZoneIndex == 0 ? SpinTypes.SilverSpin : SpinTypes.BronzeSpin;
         }
         
         /// <summary>

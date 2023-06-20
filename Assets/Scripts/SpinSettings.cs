@@ -43,13 +43,13 @@ namespace Spins
     [Serializable]
     public struct SpinZones
     {
-        [SerializeField] private int defaultStartZone;
-        [SerializeField] private int silverZone;
-        [SerializeField] private int goldZone;
+        [SerializeField] private int defaultStartZoneIndex;
+        [SerializeField] private int silverZoneIndex;
+        [SerializeField] private int goldZoneIndex;
         
-        public int DefaultStartZone => defaultStartZone;
-        public int SilverZone => silverZone;
-        public int GoldZone => goldZone;
+        public int DefaultStartZoneIndex => defaultStartZoneIndex;
+        public int SilverZoneIndex => silverZoneIndex;
+        public int GoldZoneIndex => goldZoneIndex;
     }
     
     
@@ -58,9 +58,8 @@ namespace Spins
     public class SpinSettings : ScriptableObject
     {
         public bool isRandomOrderActive;
-        public ZoneColors zoneColors;
-        public SpinZones spinZones;
-        public List<KindOfSpin> kinOfSpin;
+        public SpinZones spinZonesIndex;
+        public List<KindOfSpin> kindOfSpin;
 
     }
 }
