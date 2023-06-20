@@ -30,7 +30,7 @@ public class CardZoneNumber : MonoBehaviour
 
     public void Initialize()
     {
-        SetZoneNumber();
+        GetZoneNumber();
         SetZoneNumberText();
         SetZoneNumberItemBackGround();
         gameObject.name = "Card_Zone_Number_" + _zoneNumber;
@@ -39,7 +39,7 @@ public class CardZoneNumber : MonoBehaviour
     /// <summary>
     /// This method sets the zone number to the index of the sibling objects + 1.
     /// </summary>
-    private void SetZoneNumber()
+    private void GetZoneNumber()
     {
         _zoneNumber = transform.GetSiblingIndex() + 1;
     }
@@ -53,7 +53,7 @@ public class CardZoneNumber : MonoBehaviour
         
         _zoneNumberText.SetText(_zoneNumber.ToString());
 
-        _zoneNumberText.color = GetCardZoneNTextColor();
+        _zoneNumberText.color = GetCardZoneTextColor();
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class CardZoneNumber : MonoBehaviour
     /// This method returns the correct text color based on the zone number.
     /// </summary>
     /// <returns></returns>
-    private Color GetCardZoneNTextColor()
+    private Color GetCardZoneTextColor()
     {
         if (_zoneNumber % 30 == 0)
         {
